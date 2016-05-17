@@ -1,8 +1,8 @@
 <!-- index.html -->
 <!DOCTYPE html>
   <html ng-app="app">
-    <base href="/"
     <head>
+      <base href="/">
       <script src="node_modules/oauthio-web/dist/oauth.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -31,8 +31,8 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                   <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li active= {{ isActive }}><a href="#/">Home</a></li>
+                    <li><a active="isActive" href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                   </ul>
                 </div>

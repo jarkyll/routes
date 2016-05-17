@@ -2,22 +2,22 @@ var app = angular.module('app', ['ngRoute', 'ui.bootstrap', "ngAnimate"])
 
 
 
-
-OAuth.initialize('DwPepa-DHxsmZP-R6ytDR3ls5ZU')
-
 app.config(function($routeProvider, $locationProvider){
 	$routeProvider
 		.when("/", {
 			templateUrl: "pages/home.html",
-			controller: "MainController"
+			controller: "MainController",
+			activetab: ""
 		})
 		.when("/about", {
 			templateUrl: "pages/about.html",
-			controller: "AboutController"
+			controller: "AboutController",
+			activetab: "about"
 		})
 		.when("/contact", {
 			templateUrl: "pages/contact.html",
 			controller: "ContactController",
+			activetab: "contact",
 			requireToken: true
 		})
 		.when('/access_token=:accessToken', {
@@ -33,11 +33,11 @@ app.config(function($routeProvider, $locationProvider){
             var key    = param[0];
             var value  = param[1];
             params[key] = value;
-            $rootScope.message=params;
+            $rootScope.access_token=params;
           	}
           	console.log($rootScope.message)
           	$location.path("/about");
-        	$window.close()
+          	$window.close()
         	}
       	})
 		.otherwise({
@@ -51,20 +51,22 @@ app.run(function($rootScope){
 });
 
 
-app.controller("MainController", ['$scope', function($scope){
+app.controller("MainController", ['$scope', '$route', function($scope, $route){
 		$scope.message = "This is my Angular app."
-
+		$scope.route = $route
 }]);
 
 
 
-app.controller("AboutController", ['$scope', function($scope){
+app.controller("AboutController", ['$scope', '$route', function($scope, $route){
 		$scope.message = "This is about me."
+		$scope.route = $route
 }]);
 
 
-app.controller("ContactController", ['$scope', function($scope){
+app.controller("ContactController", ['$scope', '$route', function($scope, $route){
 		$scope.message = "This is how to contact me."
+		$scope.route = $route
 }]);
 
 
