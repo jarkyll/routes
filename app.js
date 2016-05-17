@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ui.bootstrap', "ngAnimate"]);
+var app = angular.module('app', ['ngRoute', 'ui.bootstrap', "ngAnimate"])
 
 
 
@@ -43,9 +43,12 @@ app.config(function($routeProvider, $locationProvider){
 		.otherwise({
 			redirectTo: "/"		
 		});
-		$locationProvider.html5Mode(true);
+		//$locationProvider.html5Mode(true);
 });	
 
+app.run(function($rootScope){
+	$rootScope.access_token = "hello"
+});
 
 
 app.controller("MainController", ['$scope', function($scope){
