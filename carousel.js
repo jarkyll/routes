@@ -37,7 +37,7 @@ app.controller('CarouselCtrl', function ($scope, $http, $window, $location) {
     })
   }
   $scope.auth = function() {
-    console.log($window.open('https://www.dropbox.com/1/oauth2/authorize?client_id=10uki80x2gckzal&response_type=token&redirect_uri=http://127.0.0.1:1121'));
+    $window.open('https://www.dropbox.com/1/oauth2/authorize?client_id=10uki80x2gckzal&response_type=token&redirect_uri=http://127.0.0.1:1121');
     //code = $scope.acquire_code();
    /* $http({
         method:"GET",

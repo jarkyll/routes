@@ -20,13 +20,30 @@ app.config(function($routeProvider, $locationProvider){
 			controller: "ContactController",
 			requireToken: true
 		})
-		.when("/access_token=:access_token",{
-			controller: 'LoginController'
-		})
+		.when('/access_token=:accessToken', {
+        template: 'pages/home.html',
+        controller: function ($location,$rootScope,$window) {
+          var hash = $location.path().substr(1);
+
+          var splitted = hash.split('&');
+          var params = {};
+
+          for (var i = 0; i < splitted.length; i++) {
+            var param  = splitted[i].split('=');
+            var key    = param[0];
+            var value  = param[1];
+            params[key] = value;
+            $rootScope.message=params;
+          	}
+          	console.log($rootScope.message)
+          	$location.path("/about");
+        	$window.close()
+        	}
+      	})
 		.otherwise({
 			redirectTo: "/"		
 		});
-		$locationProvider.html5Mode(true)
+		$locationProvider.html5Mode(true);
 });	
 
 
@@ -48,15 +65,6 @@ app.controller("ContactController", ['$scope', function($scope){
 }]);
 
 
-app.controller("LoginController", ['$scope', "$routeParams", "$window", function($scope, $routeParams, $window){
-		console.log($routeParams)
-		var $parentscope = $window.opener.angular.element(window.opener.document).scope();
-		if(angular.isDefined($routeParams.access_token)) {
-    		parentscope.$broadcast("igAccessTokenObtained",
-     			{ access_token: $routeParams.access_token
-     		})
-   		}
-   	console.log("hello")
-    $window.close();
-    console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+app.controller("LoginController", ['$scope', "$routeScope", "$location", function($scope, $routeParams, $window){
+
 }]);
