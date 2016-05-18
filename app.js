@@ -73,3 +73,10 @@ app.controller("ContactController", ['$scope', '$route', function($scope, $route
 app.controller("LoginController", ['$scope', "$routeScope", "$location", function($scope, $routeParams, $window){
 
 }]);
+
+
+app.controller("HeaderController", ['$scope', '$location', function($scope, $location){
+		$scope.isActive = function(location){
+			return location === $location.path()
+		}
+}]);

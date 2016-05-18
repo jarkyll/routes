@@ -31,10 +31,10 @@
                     <a class="navbar-brand">Nabeel Virani</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
-                  <ul class="nav navbar-nav navbar-right">
-                    <li active= {{ isActive }}><a href="/">Home</a></li>
-                    <li><a active="isActive" href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                  <ul class="nav navbar-nav navbar-right" ng-controller="HeaderController">
+                    <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
+                    <li ng-class="{ active: isActive('/about')}"><a href="/about">About</a></li>
+                    <li ng-class="{ active: isActive('/contact')}"><a href="/contact">Contact</a></li>
                   </ul>
                 </div>
               </div>
