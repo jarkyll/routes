@@ -21,23 +21,21 @@ app.config(function($routeProvider, $locationProvider){
 			requireToken: true
 		})
 		.when('/access_token=:accessToken', {
-        template: 'pages/home.html',
-        controller: function ($location,$rootScope,$window) {
-          var hash = $location.path().substr(1);
-
-          var splitted = hash.split('&');
-          var params = {};
-
-          for (var i = 0; i < splitted.length; i++) {
-            var param  = splitted[i].split('=');
-            var key    = param[0];
-            var value  = param[1];
-            params[key] = value;
-            $rootScope.access_token=params;
-          	}
-          	console.log($rootScope.message)
-          	$location.path("/about");
-          	$window.close()
+        	template: 'pages/home.html',
+        	controller: function ($location,$rootScope,$window) {
+          		var hash = $location.path().substr(1);
+          		var splitted = hash.split('&');
+          		var params = {};
+          		for (var i = 0; i < splitted.length; i++) {
+            	var param  = splitted[i].split('=');
+            	var key    = param[0];
+            	var value  = param[1];
+            	params[key] = value;
+            	$rootScope.access_token=params;
+         	}
+          	console.log($rootScope.access_token)
+          	$location.path("/");
+          	//$window.close()
         	}
       	})
 		.otherwise({
@@ -70,8 +68,18 @@ app.controller("ContactController", ['$scope', '$route', function($scope, $route
 }]);
 
 
-app.controller("LoginController", ['$scope', "$routeScope", "$location", function($scope, $routeParams, $window){
-
+app.controller("LoginController", ['$scope', function($scope){
+			$scope.login = function(){
+			alert("hello")
+			var client_id = "10uki80x2gckzal"
+			var response_type = "token"
+			var redirect_uri = "http://127.0.0.1:1121"
+			var url = 'https://www.dropbox.com/1/oauth2/authorize?client_id=' + client_id + "&response_type=" + response_type + '&redirect_uri=' + redirect_uri;
+			//$window.open('https://www.dropbox.com/1/oauth2/authorize?client_id=10uki80x2gckzal&response_type=token&redirect_uri=http://127.0.0.1:1121');
+			console.log("login is working")
+			window.location.replace(url)
+			// instead of opening a new tab, we are opening on the current tab and redirecting back
+		};
 }]);
 
 
