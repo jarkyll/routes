@@ -45,7 +45,7 @@ app.config(function($routeProvider, $locationProvider){
 });	
 
 app.run(function($rootScope){
-	$rootScope.access_token = "hello"
+	//$rootScope.access_token = "hello"
 });
 
 
@@ -80,6 +80,9 @@ app.controller("LoginController", ['$scope', function($scope){
 			window.location.replace(url)
 			// instead of opening a new tab, we are opening on the current tab and redirecting back
 		};
+
+
+		//add the api call list folders and make it so a table with the list of names pops up.
 }]);
 
 
@@ -87,4 +90,5 @@ app.controller("HeaderController", ['$scope', '$location', function($scope, $loc
 		$scope.isActive = function(location){
 			return location === $location.path()
 		}
+
 }]);
